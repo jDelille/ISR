@@ -1,39 +1,22 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Incremental Static Regeneration
 
-## Getting Started
+Docs: https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration
 
-First, run the development server:
+With ISR, you can retain the benefits of static while scaling to millions of pages.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## How to check if you have implemented it correctly:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+To check if you have implemented ISR correctly in your project, you can run ```yarn build``` or ```npm run build``` depending on what you use.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- After running build without implementing ISR, you'll notice the terminal looks like this
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+![no-isr-1](https://user-images.githubusercontent.com/84540947/227391981-82167b70-ed53-4c38-af3c-ece247ab2d1b.png)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+You can see that at the top of the image, next to the /user/[userId] line, there is a lambda sign 'λ'. This means that this route is server side rendered at runtime.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+- After running build with correctly implementing ISR, you'll notice the terminal now looks like this
 
-To learn more about Next.js, take a look at the following resources:
+![with-isr](https://user-images.githubusercontent.com/84540947/227391640-45530cb4-3d5d-4e3f-b0ee-ed3503718cf0.png)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# ISR
+You can see that at the top of the image, next to the /user/[userId] line, the lambda sign 'λ' has been replaced with the static circle sign.  This means that this route is automatically rendered as static HTML.
